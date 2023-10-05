@@ -27,8 +27,9 @@ public class ProfilePage extends BasePage {
         driver.findElement(logo).click();
         return new MainPage();
     }
+
     @Step("Нажатие на кнопку Выход")
-    public LoginPage logOutButtonClick(){
+    public LoginPage logOutButtonClick() {
         driver.findElement(exitButton).click();
         new WebDriverWait(driver, 3);
         return new LoginPage();

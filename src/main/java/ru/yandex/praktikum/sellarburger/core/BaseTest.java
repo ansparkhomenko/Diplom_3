@@ -21,7 +21,6 @@ public class BaseTest {
     protected Response response;
 
 
-
     @Before
     public void setUp() {
         //Для запуска в других браузерах надо указать BrowserType.FIREFOX или BrowserType.YANDEX в методе getDriver()
@@ -31,9 +30,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         BasePage.setDriver(driver);
         driver.get(BASE_URL);
-        //Создание уникального пользователя
-        String uniqueEmail = UserHelper.generateUniqueEmail();
-        user = new UserData(uniqueEmail, "qwe123", "Bob");
+        user = UserHelper.getUniqueUser();
 
     }
 
@@ -59,7 +56,7 @@ public class BaseTest {
         response = userServiceApi.loginUser(user);
         String accessToken = response.then().extract().path("accessToken");
 
-        if (accessToken != null){
+        if (accessToken != null) {
             userServiceApi.deleteUser(accessToken);
         }
         driver.quit();

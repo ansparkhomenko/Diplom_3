@@ -37,5 +37,4 @@ public class StellarBurgerRegisterTest extends BaseTest {
         String expected = "Некорректный пароль";
         Assert.assertEquals("Неправильный текст ошибки",expected, actual);
     }
-
 }

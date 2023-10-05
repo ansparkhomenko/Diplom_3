@@ -11,6 +11,9 @@ import static io.restassured.RestAssured.given;
 public class UserServiceApi {
 
     private final String URL = "https://stellarburgers.nomoreparties.site";
+    private static final String REGISTER_PATH = "/api/auth/register";
+    private static final String LOGIN_PATH = "/api/auth/login";
+    private static final String UPDATE_PATH = "/api/auth/user";
     private RequestSpecification requestSpec = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .setBaseUri(URL)
@@ -21,7 +24,7 @@ public class UserServiceApi {
         return given()
                 .spec(requestSpec)
                 .body(user)
-                .post("/api/auth/register");
+                .post(REGISTER_PATH);
     }
 
     @Step("Логин пользователя")
@@ -29,7 +32,7 @@ public class UserServiceApi {
         return given()
                 .spec(requestSpec)
                 .body(user)
-                .post("/api/auth/login");
+                .post(LOGIN_PATH);
     }
 
     @Step("Удаление пользователя")
@@ -37,7 +40,7 @@ public class UserServiceApi {
         return given()
                 .header("authorization", accessToken)
                 .spec(requestSpec)
-                .delete("/api/auth/user");
+                .delete(UPDATE_PATH);
     }
 
     @Step("Обновление данных о пользователе с авторизацией")
@@ -46,7 +49,7 @@ public class UserServiceApi {
                 .header("authorization", accessToken)
                 .spec(requestSpec)
                 .body(user)
-                .patch("/api/auth/user");
+                .patch(UPDATE_PATH);
 
     }
 
@@ -55,7 +58,7 @@ public class UserServiceApi {
         return given()
                 .spec(requestSpec)
                 .body(user)
-                .patch("/api/auth/user");
+                .patch(UPDATE_PATH);
 
     }
 }
